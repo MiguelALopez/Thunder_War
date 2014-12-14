@@ -20,6 +20,9 @@ public class ThunderWar extends JFrame{
     JPanel estado;
     JLabel lvida;
     JProgressBar vida;
+    JLabel ltiempo;
+    JTextField tiempo;
+    Temporizador temp;
 
     boolean iniciado;
 
@@ -38,6 +41,8 @@ public class ThunderWar extends JFrame{
         inicio = new JButton("Pulsa espacio para comenzar");
         lpuntos = new JLabel("Puntuacion");
         puntos = new JTextField(5);
+        ltiempo = new JLabel("Tiempo");
+        tiempo = new JTextField(5);
         estado = new JPanel();
         lvida = new JLabel("Vida");
         vida = new JProgressBar(0, 100);
@@ -67,9 +72,9 @@ public class ThunderWar extends JFrame{
         setVisible(true);
     }
 
-    public void terminarPartida() {
-        pantalla.terminarPartida();
+    public synchronized void terminarPartida() {
         lanzarEnemigos.stop();
+        pantalla.terminarPartida();
     }
 
     //Carga datos iniciales del juego
@@ -91,6 +96,11 @@ public class ThunderWar extends JFrame{
         jugadores[0].iniciarPartida(100, 30, 18, getWidth(), getHeight());
         enemig = new enemigo[5];
         iniciado = true;
+
+
+        temp = new Temporizador(this,10);
+        temp.start();
+
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
@@ -115,6 +125,9 @@ public class ThunderWar extends JFrame{
         puntos.setText("0");
         estado.add(lvida);
         estado.add(vida);
+        estado.add(ltiempo);
+        estado.add(tiempo);
+        tiempo.setText("60");
         //vida del avion
         vida.setValue(100);
         vida.setForeground(Color.RED);

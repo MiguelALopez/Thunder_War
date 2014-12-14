@@ -11,6 +11,7 @@ package Juego;
 import java.awt.event.*;
 
 public class Control {
+    // Sincronizado
     ThunderWar thunderWar;
 //    topGun thunderWar;
 //    Pantalla pantalla;
