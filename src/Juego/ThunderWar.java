@@ -90,7 +90,7 @@ public class ThunderWar extends JFrame{
     public void iniciarJuego(Jugador jugador){
         //Inicio añado el jugador principal a la primera posicion del arreglo
         jugadores[0] = jugador;
-//        jugadores[1] = new Jugador("miguel",true, null, null, null, this);
+        jugadores[1] = new Jugador("miguel",true, null, null, null, this);
         //Metodo encargado de cargar las configuraciones iniciales de un usuario
 //        cargarConfiguraciones();
         nivelUno();
@@ -104,6 +104,7 @@ public class ThunderWar extends JFrame{
     public void nivelUno(){
         // envia datos a lanzar enemigo para darle un nv de dif
         jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight());
+        jugadores[1].iniciarPartida(100, 20, 20, getWidth()-50, getHeight()-50);
         enemig = new enemigo[5];
         iniciado = true;
 
