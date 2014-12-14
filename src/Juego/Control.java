@@ -50,6 +50,18 @@ public class Control {
                             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                                 thunderWar.jugadores[0].derecha();
                             }
+                            if (e.getKeyCode() == KeyEvent.VK_W){
+                                thunderWar.jugadores[1].arriba();
+                            }
+                            if (e.getKeyCode() == KeyEvent.VK_A){
+                                thunderWar.jugadores[1].izquierda();
+                            }if (e.getKeyCode() == KeyEvent.VK_S){
+                                thunderWar.jugadores[1].abajo();
+                            }if (e.getKeyCode() == KeyEvent.VK_D){
+                                thunderWar.jugadores[1].derecha();
+                            }if (e.getKeyCode() == KeyEvent.VK_Q){
+                                thunderWar.jugadores[1].disparar();
+                            }
                         }
                     }
                 }
