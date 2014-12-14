@@ -90,6 +90,7 @@ public class ThunderWar extends JFrame{
     public void iniciarJuego(Jugador jugador){
         //Inicio añado el jugador principal a la primera posicion del arreglo
         jugadores[0] = jugador;
+//        jugadores[1] = new Jugador("miguel",true, null, null, null, this);
         //Metodo encargado de cargar las configuraciones iniciales de un usuario
 //        cargarConfiguraciones();
         nivelUno();
@@ -107,7 +108,7 @@ public class ThunderWar extends JFrame{
         iniciado = true;
 
 
-        temp = new Temporizador(this,1000);
+        temp = new Temporizador(this,5);
         temp.start();
 
 
