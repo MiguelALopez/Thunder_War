@@ -32,7 +32,6 @@ public class ThunderWar extends JFrame{
     lanzarEnemigos lanzarEnemigos;
     Jugador jugadores[];
     Control control;
-//    ControlUsuario controlUsuario;
     Pantalla pantalla;
     //Constructor
 
@@ -103,24 +102,24 @@ public class ThunderWar extends JFrame{
 
     public void nivelUno(){
         // envia datos a lanzar enemigo para darle un nv de dif
-        jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight());
-        jugadores[1].iniciarPartida(100, 20, 20, getWidth()-50, getHeight()-50);
+        jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight(), 0, 30);
+        jugadores[1].iniciarPartida(100, 20, 20, getWidth()-50, getHeight()-50, 1, 30);
         enemig = new enemigo[5];
         iniciado = true;
 
 
-        temp = new Temporizador(this,5);
+        temp = new Temporizador(this,60);
         temp.start();
 
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
-            enemig[i] = new enemigo(this, 4, 3000);
+            enemig[i] = new enemigo(this, 4, 6);
             enemig[i].start();
             enemig[i].preparar();
         }
 
-        lanzarEnemigos = new lanzarEnemigos(this, 1400);
+        lanzarEnemigos = new lanzarEnemigos(this, 100);
         lanzarEnemigos.start();
 
 
@@ -154,6 +153,7 @@ public class ThunderWar extends JFrame{
             {
                 if (jugadores[i].getVida() > 0){
                     muertos = false;
+
                 }
             }
         }

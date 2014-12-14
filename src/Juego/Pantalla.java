@@ -61,7 +61,7 @@ public class Pantalla extends JPanel implements Runnable{
     public void actualizarAvion(Graphics g) {
         //pintar aviones
         for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i] != null){
+            if (thunderWar.jugadores[i] != null && thunderWar.jugadores[i].vivo){
                 g.drawImage(imgAvion,
                         thunderWar.jugadores[i].getPosicionX(),
                         thunderWar.jugadores[i].getPosicionY(),
@@ -72,7 +72,7 @@ public class Pantalla extends JPanel implements Runnable{
 
     public void actualizarDisparos(Graphics g) {
         for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i] != null){
+            if (thunderWar.jugadores[i] != null && thunderWar.jugadores[i].vivo){
                 for (int j = 0; j < thunderWar.jugadores[i].disparos.length; j++){
 
                     int x = thunderWar.jugadores[i].disparos[j].retornarX();
@@ -98,7 +98,7 @@ public class Pantalla extends JPanel implements Runnable{
     //Metodo que verifica si el avion de un jugador colisiona contra uno enemigo
     void colisionAvionEnemigo(Graphics g) {
         for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i]!= null){
+            if (thunderWar.jugadores[i]!= null && thunderWar.jugadores[i].vivo){
                 for (int j = 0; j < thunderWar.enemig.length; j++) {
                     int w1, h1, w2, h2, x1, x2, y1, y2;
                     w1 = 50;
@@ -117,7 +117,9 @@ public class Pantalla extends JPanel implements Runnable{
                     if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
                         if (thunderWar.enemig[j].muerto() == false) {
                             thunderWar.jugadores[i].golpe();
-                            thunderWar.vida.setValue(thunderWar.jugadores[i].getVida());
+                            if (i == 0){
+                                thunderWar.vida.setValue(thunderWar.jugadores[0].getVida());
+                            }
 
 
                         }
@@ -165,11 +167,8 @@ public class Pantalla extends JPanel implements Runnable{
 
 
     public synchronized void terminarPartida(){
-//        graphicsBuffer.clearRect(0, 0, 600, 600);
-//        graphicsBuffer.drawString("Fin del juego", 250, 350);
 
         hilo.stop();
-
     }
 
     @Override
@@ -177,7 +176,7 @@ public class Pantalla extends JPanel implements Runnable{
         while (true){
             repaint();
             try {
-                hilo.sleep(50);
+                hilo.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

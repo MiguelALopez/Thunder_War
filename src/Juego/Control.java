@@ -34,26 +34,20 @@ public class Control {
                 new KeyAdapter() {
                     @Override
                     public void keyPressed(KeyEvent e) {
-                        if (thunderWar.iniciado) {
+                        if (thunderWar.iniciado && thunderWar.jugadores[0].vivo && thunderWar.jugadores[1].vivo) {
                             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                                 thunderWar.jugadores[0].disparar();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                            }if (e.getKeyCode() == KeyEvent.VK_UP) {
                                 thunderWar.jugadores[0].arriba();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            }if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                                 thunderWar.jugadores[0].abajo();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                            }if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                                 thunderWar.jugadores[0].izquierda();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                            }if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                                 thunderWar.jugadores[0].derecha();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_W){
+                            }if (e.getKeyCode() == KeyEvent.VK_W){
                                 thunderWar.jugadores[1].arriba();
-                            }
-                            if (e.getKeyCode() == KeyEvent.VK_A){
+                            }if (e.getKeyCode() == KeyEvent.VK_A){
                                 thunderWar.jugadores[1].izquierda();
                             }if (e.getKeyCode() == KeyEvent.VK_S){
                                 thunderWar.jugadores[1].abajo();

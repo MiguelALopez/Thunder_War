@@ -26,6 +26,7 @@ public class Jugador{
     int numDisparo;
 
     //Configuraciones de un jugador
+    int numJugador;
     boolean sonido;
     Image imgAvion;
     Image imgUsuario;
@@ -46,18 +47,20 @@ public class Jugador{
         puntos = 0;
     }
 
-    public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth){
+    public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth, int numJugador, int velocidadDisparo){
         this.vida = vida;
         this.velocidadNave = velocidadNave;
+        this.numJugador = numJugador;
 
         disparos = new disparo[numDisparos];
+        vivo = true;
         posicionY = width-90;
         posicionX = (heigth - 90) / 2;
 
         for (int i = 0; i < disparos.length; i++) {
             //Iniciamos los disparos
             if (i < disparos.length){
-                disparos[i] = new disparo(thunderWar, 24); //Disparos del avion
+                disparos[i] = new disparo(thunderWar, 24, numJugador, velocidadDisparo); //Disparos del avion
             }
             else {
 //                disparos[i] = new disparo(thunderWar,true, 6); //Disparos de los enemigos
@@ -71,7 +74,7 @@ public class Jugador{
 
     void disparar() {
         numDisparo++;
-        if (numDisparo == disparos.length/2) {
+        if (numDisparo == disparos.length) {
             numDisparo = 0;
         }
         disparos[numDisparo].fuego();
@@ -79,6 +82,7 @@ public class Jugador{
 
     public void golpe(){
         vida -= 10;
+        System.out.println("El jugador " + numJugador + " tiene " + vida + " de vida");
         if (vida <= 0)
         {
             vivo = false;

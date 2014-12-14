@@ -12,16 +12,16 @@ class enemigo extends Thread {
 
     boolean vivo = true;
     boolean derecha = true;
-    int velocidad = 6;
+    int velocidadEnemigo = 6;
     int velocidadCreacion;
 
     //Clase de topGun
 //    topGun thunderWar;
     ThunderWar thunderWar;
-    enemigo(JFrame jf, int movimiento, int velocidadCreacion) {
+    enemigo(JFrame jf, int movimiento, int velocidadEnemigo) {
         thunderWar = (ThunderWar) jf;
-        this.velocidad = velocidad;
-        this.velocidadCreacion = velocidadCreacion;
+        this.velocidadEnemigo = velocidadEnemigo;
+//        this.velocidadCreacion = velocidadCreacion;
     }
 
 
@@ -40,7 +40,7 @@ class enemigo extends Thread {
             derecha = false;
         }
         //Velocidad aleatoria del enemigo
-        aux = Math.random() * (velocidad + -1) + velocidad;
+        aux = Math.random() * (velocidadEnemigo + -1) + velocidadEnemigo;
         int movimiento = (int) aux;
         while (y < tamano && vivo == true) {
             try {
@@ -65,7 +65,7 @@ class enemigo extends Thread {
         //Volver al estado inicial para preparar de nuevo el disparo
         if (!vivo){
             try {
-                sleep(1);
+                sleep(350);
             } catch (InterruptedException ie) {
                 System.out.println(ie);
             }
