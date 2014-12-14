@@ -41,18 +41,21 @@ public class Pantalla extends JPanel implements Runnable{
 
 
     public void paint(Graphics g) {
-        imageBuffer = createImage(getWidth(), getHeight());
-        graphicsBuffer = imageBuffer.getGraphics();
+        if (thunderWar.iniciado){
+            imageBuffer = createImage(getWidth(), getHeight());
+            graphicsBuffer = imageBuffer.getGraphics();
 
-        actualizarAvion(graphicsBuffer);
-        actualizarDisparos(graphicsBuffer);
-        actualizarEnemigos(graphicsBuffer);
+            actualizarAvion(graphicsBuffer);
+            actualizarDisparos(graphicsBuffer);
+            actualizarEnemigos(graphicsBuffer);
 
 
-        colisionAvionEnemigo(graphicsBuffer);
-        colisionDisparoEnemigo();
+            colisionAvionEnemigo(graphicsBuffer);
+            colisionDisparoEnemigo();
 
-        g.drawImage(imageBuffer, 0, 0, null);
+            g.drawImage(imageBuffer, 0, 0, null);
+        }
+
     }
 
     public void actualizarAvion(Graphics g) {
@@ -71,6 +74,7 @@ public class Pantalla extends JPanel implements Runnable{
         for (int i = 0; i < thunderWar.jugadores.length; i++){
             if (thunderWar.jugadores[i] != null){
                 for (int j = 0; j < thunderWar.jugadores[i].disparos.length; j++){
+
                     int x = thunderWar.jugadores[i].disparos[j].retornarX();
                     int y = thunderWar.jugadores[i].disparos[j].retornarY();
                     g.drawImage(imgDisparo, x + 40, y, 3, 9, null);

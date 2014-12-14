@@ -102,7 +102,7 @@ public class ThunderWar extends JFrame{
 
     public void nivelUno(){
         // envia datos a lanzar enemigo para darle un nv de dif
-        jugadores[0].iniciarPartida(100, 30, 18, getWidth(), getHeight());
+        jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight());
         enemig = new enemigo[5];
         iniciado = true;
 

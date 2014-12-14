@@ -56,11 +56,11 @@ public class Jugador{
 
         for (int i = 0; i < disparos.length; i++) {
             //Iniciamos los disparos
-            if (i < disparos.length/2){
+            if (i < disparos.length){
                 disparos[i] = new disparo(thunderWar, 24); //Disparos del avion
             }
             else {
-                disparos[i] = new disparo(thunderWar,true, 6); //Disparos de los enemigos
+//                disparos[i] = new disparo(thunderWar,true, 6); //Disparos de los enemigos
             }
             disparos[i].start();
             //Preparar los disparos para utilizarlos al pulsar espacio

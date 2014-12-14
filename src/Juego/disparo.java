@@ -42,6 +42,7 @@ class disparo extends Thread {
             x = tg.jugadores[0].getPosicionX();
             y = tg.jugadores[0].getPosicionY();
 
+            System.out.println(x + " - "+ y);
         } else {
             //Posicion Enemigo
             x = tg.enemig[numeroEnemigo].retornarX();
