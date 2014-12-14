@@ -6,9 +6,6 @@ package Juego;
  */
 
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Alejandro
@@ -17,7 +14,7 @@ public class Temporizador extends Thread {
 
     private int segundos       = 0;
     private int numeroSegundos = 0;
-    ThunderWar tp;
+    ThunderWar thunderWar;
 
 
     public void run() {
@@ -26,14 +23,15 @@ public class Temporizador extends Thread {
                 sleep(1000);
             } catch (InterruptedException ex) {}
             segundos+=1;
-            tp.tiempo.setText(Integer.toString(numeroSegundos-segundos));
+            thunderWar.tiempo.setText(Integer.toString(numeroSegundos-segundos));
         }
-        tp.terminarPartida();
+        thunderWar.terminarPartida();
+
         suspend();
     }
 
     public Temporizador(ThunderWar tp, int numeroSegundos) {
-        this.tp = tp;
+        this.thunderWar = tp;
         this.numeroSegundos = numeroSegundos;
 
 

@@ -75,7 +75,17 @@ public class ThunderWar extends JFrame{
     public synchronized void terminarPartida() {
         lanzarEnemigos.stop();
         pantalla.terminarPartida();
+        pantalla.setVisible(false);
+        JPanel panelFinPartida = new JPanel();
+        panelFinPartida.setLayout(new BorderLayout());
+        JLabel labelFinPartida =new JLabel("Fin Partida");
+        labelFinPartida.setHorizontalAlignment(JLabel.CENTER);
+//        panelFinPartida.add((new JLabel(("Fin Partida")), BorderLayout.CENTER));
+        panelFinPartida.add(labelFinPartida, BorderLayout.CENTER);
+        add(panelFinPartida, BorderLayout.CENTER);
     }
+
+
 
     //Carga datos iniciales del juego
     public void iniciarJuego(Jugador jugador){

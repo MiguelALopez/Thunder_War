@@ -12,7 +12,7 @@ import javax.swing.*;
 //Clase del juego. Lanza los enemigos
 public class lanzarEnemigos extends Thread {
 
-//    topGun tp;
+//    topGun thunderWar;
     ThunderWar tp;
     int i = 0;
     int velocidadLanzaEne;

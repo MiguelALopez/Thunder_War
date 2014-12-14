@@ -161,10 +161,9 @@ public class Pantalla extends JPanel implements Runnable{
 
 
     public synchronized void terminarPartida(){
-        graphicsBuffer.clearRect(0, 0, 600, 600);
-        graphicsBuffer.drawString("Fin del juego", 250, 350);
+//        graphicsBuffer.clearRect(0, 0, 600, 600);
+//        graphicsBuffer.drawString("Fin del juego", 250, 350);
 
-        paint(graphicsBuffer);
         hilo.stop();
 
     }
