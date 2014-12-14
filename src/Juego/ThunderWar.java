@@ -8,6 +8,8 @@
  * **********************************************/
 package Juego;
 
+import Juego.DAO.ConnectionConf;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,7 +33,7 @@ public class ThunderWar extends JFrame{
     enemigo enemig[];
     lanzarEnemigos lanzarEnemigos;
     Jugador jugadores[];
-    Control control;
+//    Control control;
     Pantalla pantalla;
     //Constructor
 
@@ -51,7 +53,7 @@ public class ThunderWar extends JFrame{
         //Inicializo las clases
         jugadores = new Jugador[10];
         pantalla = new Pantalla(this);
-        control = new Control(this);
+//        control = new Control(this);
 
 
         setLayout(new BorderLayout());
@@ -166,6 +168,8 @@ public class ThunderWar extends JFrame{
 
     public static void main(String[] args) {
         ThunderWar thunderWar = new ThunderWar();
-//        new Control(thunderWar);
+        ConnectionConf connectionConf = new ConnectionConf();
+        connectionConf.conectar();
+        new Control(thunderWar);
     }
 }
