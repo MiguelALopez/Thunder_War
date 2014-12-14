@@ -80,7 +80,6 @@ public class ThunderWar extends JFrame{
         panelFinPartida.setLayout(new BorderLayout());
         JLabel labelFinPartida =new JLabel("Fin Partida");
         labelFinPartida.setHorizontalAlignment(JLabel.CENTER);
-//        panelFinPartida.add((new JLabel(("Fin Partida")), BorderLayout.CENTER));
         panelFinPartida.add(labelFinPartida, BorderLayout.CENTER);
         add(panelFinPartida, BorderLayout.CENTER);
     }
@@ -108,13 +107,13 @@ public class ThunderWar extends JFrame{
         iniciado = true;
 
 
-        temp = new Temporizador(this,10);
+        temp = new Temporizador(this,1000);
         temp.start();
 
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
-            enemig[i] = new enemigo(this);
+            enemig[i] = new enemigo(this, 4, 3000);
             enemig[i].start();
             enemig[i].preparar();
         }
@@ -137,7 +136,6 @@ public class ThunderWar extends JFrame{
         estado.add(vida);
         estado.add(ltiempo);
         estado.add(tiempo);
-        tiempo.setText("60");
         //vida del avion
         vida.setValue(100);
         vida.setForeground(Color.RED);
@@ -157,7 +155,6 @@ public class ThunderWar extends JFrame{
                 }
             }
         }
-
         return muertos;
     }
 

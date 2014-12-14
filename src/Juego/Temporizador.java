@@ -33,9 +33,7 @@ public class Temporizador extends Thread {
     public Temporizador(ThunderWar tp, int numeroSegundos) {
         this.thunderWar = tp;
         this.numeroSegundos = numeroSegundos;
-
-
-
+//        thunderWar.tiempo.setText(Integer.toString(numeroSegundos-segundos));
     }
 }
 

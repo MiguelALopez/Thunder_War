@@ -173,7 +173,7 @@ public class Pantalla extends JPanel implements Runnable{
         while (true){
             repaint();
             try {
-                hilo.sleep(1);
+                hilo.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

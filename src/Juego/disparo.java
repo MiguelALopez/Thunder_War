@@ -47,6 +47,8 @@ class disparo extends Thread {
             x = tg.enemig[numeroEnemigo].retornarX();
             y = tg.enemig[numeroEnemigo].retornarY();
         }
+
+
         while (y > 0) {
             try {
                 //Mover Disparo
