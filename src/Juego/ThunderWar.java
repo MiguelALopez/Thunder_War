@@ -97,7 +97,7 @@ public class ThunderWar extends JFrame{
     }
 
     public void arcade(){
-        int invecil = 0;
+
 
     }
 
