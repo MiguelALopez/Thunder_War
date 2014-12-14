@@ -63,7 +63,7 @@ class disparo extends Thread {
         }
         //Volver al estado inicial para preparar de nuevo el disparo
         preparar();
-        run();
+        //run();
     }
 
     public void preparar() {
