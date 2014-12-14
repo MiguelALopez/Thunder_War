@@ -62,7 +62,7 @@ public class Jugador{
             else {
                 disparos[i] = new disparo(thunderWar,true, 6); //Disparos de los enemigos
             }
-//            disparos[i].start();
+            disparos[i].start();
             //Preparar los disparos para utilizarlos al pulsar espacio
             disparos[i].preparar();
         }
