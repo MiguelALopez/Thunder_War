@@ -1,8 +1,10 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Código: 1326691
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ManejoPuntuacion.java
+ * Nombre del Archivo: ConnectionConf.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/

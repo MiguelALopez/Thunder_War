@@ -1,8 +1,10 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Código: 1326691
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ManejoUsuario.java
+ * Nombre del Archivo: ConnectionConf.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
@@ -38,25 +40,24 @@ public class ManejoUsuario {
         return existe;
     }
 
-    public void crearUsuario(String nick_name, String password, String url_imagen, String nombre, String apellido,
+    public void crearUsuario(String nick_name, String password, String nombre, String apellido,
                              int tipo_nave, boolean sonido) {
         if (!existUsuario(nick_name)) // Es lo mismo que existUsuario(nom_usuario) != true
         {
             PreparedStatement consulta = null;
             String insertSQL = "INSERT  INTO usuario" +
-                    "(nick_name, password, url_image, nombre, apellido, tipo_nave, sonido, estado)" +
+                    "(nick_name, password, nombre, apellido, tipo_nave, sonido, estado)" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try {
                 consulta = connection.prepareStatement(insertSQL);
 
                 consulta.setString(1, nick_name);
                 consulta.setString(2, password);
-                consulta.setString(3, url_imagen);
-                consulta.setString(4, nombre);
-                consulta.setString(5, apellido);
-                consulta.setInt(6, tipo_nave);
-                consulta.setBoolean(7, sonido);
-                consulta.setBoolean(8, true);
+                consulta.setString(3, nombre);
+                consulta.setString(4, apellido);
+                consulta.setInt(5, tipo_nave);
+                consulta.setBoolean(6, sonido);
+                consulta.setBoolean(7, true);
 
                 consulta.executeBatch();
             } catch (SQLException e) {
@@ -69,22 +70,21 @@ public class ManejoUsuario {
         }
     }
 
-    public void modificarUsuario(String nick_name, String password, String url_imagen, String nombre, String apellido,
+    public void modificarUsuario(String nick_name, String password, String nombre, String apellido,
                                  int tipo_nave, boolean sonido) {
         if (existUsuario(nick_name)) {
             PreparedStatement consulta = null;
 
-            String editSQL = "UPDATE usuario SET password=?, url_image=?, nombre=?, apellido=?, tipo_nave=?," +
+            String editSQL = "UPDATE usuario SET password=?, nombre=?, apellido=?, tipo_nave=?," +
                     "sonido=?";
             try {
                 consulta = connection.prepareStatement(editSQL);
 
                 consulta.setString(1, password);
-                consulta.setString(2, url_imagen);
-                consulta.setString(3, nombre);
-                consulta.setString(4, apellido);
-                consulta.setInt(5, tipo_nave);
-                consulta.setBoolean(6, sonido);
+                consulta.setString(2, nombre);
+                consulta.setString(3, apellido);
+                consulta.setInt(4, tipo_nave);
+                consulta.setBoolean(5, sonido);
 
                 consulta.executeUpdate();
 
@@ -145,6 +145,23 @@ public class ManejoUsuario {
             System.out.println("El usuario " + nick_name + " no existe");
         }
         return tabla;
+    }
+    public boolean autentificar(String nick_name , String password)
+    {
+        boolean registrado = false;
+        ResultSet resultSet = null;
+        String consulta = "SELECT nick_name FROM usuario WHERE nick_name='" + nick_name + "' and  estado=TRUE and " +
+                "password='" + password +"';";
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(consulta);
+            if (resultSet.next()) {
+                registrado = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta en" + e.getLocalizedMessage());
+        }
+        return registrado;
     }
 
     public ResultSet buscarPuntuacion(String nick_name) throws NullPointerException

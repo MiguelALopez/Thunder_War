@@ -1,3 +1,13 @@
+/***********************************************
+ * Autor: Miguel Angel Lopez Fernandez
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
+ * Plan: Ingeniería de Sistemas - 3743
+ * Institución Educativa: Universidad del Valle
+ * **********************************************/
 package Juego;
 
 import javax.swing.*;
@@ -19,12 +29,12 @@ class disparo extends Thread {
     //numeroEnemigo devuelve el numero del avion que efectua el disparo
 
 
-//    topGun thunderWar;
-    ThunderWar tg;
+//    topGun ventanaJuego;
+    VentanaJuego tg;
     //Constructor para una nave de el jugador
     disparo(JFrame jf, int velocidadNave, int numJugador, int velocidadDisparo) {
-//        thunderWar = (topGun) jf;
-        tg = (ThunderWar) jf;
+//        ventanaJuego = (topGun) jf;
+        tg = (VentanaJuego) jf;
 
         this.velocidadNave = velocidadNave;
         this.numJugador = numJugador;
@@ -32,8 +42,8 @@ class disparo extends Thread {
     }
     //Constructor para una nave enemiga
     disparo(JFrame jf, boolean e, int velocidadEnemigos, int velocidadDisparo) {
-//        thunderWar = (topGun) jf;
-        tg = (ThunderWar) jf;
+//        ventanaJuego = (topGun) jf;
+        tg = (VentanaJuego) jf;
         enemigo = e;
         this.velocidadEnemigos = velocidadEnemigos;
         this.velocidadDisparo = velocidadDisparo;
@@ -41,7 +51,6 @@ class disparo extends Thread {
 
     public void run()    //metodo run, obligatorio en el thread
     {
-        System.out.println(y);
         if (!enemigo) {
             //Posicion del avion
             x = tg.jugadores[numJugador].getPosicionX();
@@ -87,8 +96,8 @@ class disparo extends Thread {
 
     public void fuego(int numero) {
         //Posicion del avion
-//        x = thunderWar.retornarX();
-//        y = thunderWar.retornarY();
+//        x = ventanaJuego.retornarX();
+//        y = ventanaJuego.retornarY();
         x = tg.jugadores[numJugador].getPosicionX();
         y = tg.jugadores[numJugador].getPosicionY();
 

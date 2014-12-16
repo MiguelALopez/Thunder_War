@@ -1,3 +1,13 @@
+/***********************************************
+ * Autor: Miguel Angel Lopez Fernandez
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
+ * Plan: Ingeniería de Sistemas - 3743
+ * Institución Educativa: Universidad del Valle
+ * **********************************************/
 package Juego;
 
 import javax.swing.*;
@@ -16,10 +26,10 @@ class enemigo extends Thread {
     int velocidadCreacion;
 
     //Clase de topGun
-//    topGun thunderWar;
-    ThunderWar thunderWar;
+//    topGun ventanaJuego;
+    VentanaJuego ventanaJuego;
     enemigo(JFrame jf, int movimiento, int velocidadEnemigo) {
-        thunderWar = (ThunderWar) jf;
+        ventanaJuego = (VentanaJuego) jf;
         this.velocidadEnemigo = velocidadEnemigo;
 //        this.velocidadCreacion = velocidadCreacion;
     }
@@ -29,7 +39,7 @@ class enemigo extends Thread {
     {
         //posicion aleatoria del avion enemigo
 //        double aux = Math.random() * 550;
-        tamano = thunderWar.getWidth() - thunderWar.pantalla.imgEnemigo.getWidth(null);
+        tamano = ventanaJuego.getWidth() - ventanaJuego.pantalla.imgEnemigo.getWidth(null);
         double aux = Math.random() * tamano;
         x = (int) aux;
         //direccion aleatoria del enemigo
@@ -87,14 +97,14 @@ class enemigo extends Thread {
     public void explotar() {
         int puntos;
         vivo = false;
-        puntos = Integer.valueOf(thunderWar.puntos.getText());
+        puntos = Integer.valueOf(ventanaJuego.puntos.getText());
         puntos += 10;
-        thunderWar.puntos.setText(String.valueOf(puntos));
+        ventanaJuego.puntos.setText(String.valueOf(puntos));
     }
 
     public void fuego() {
-        x = thunderWar.jugadores[0].getPosicionX();
-        y = thunderWar.jugadores[0].getPosicionY();
+        x = ventanaJuego.jugadores[0].getPosicionX();
+        y = ventanaJuego.jugadores[0].getPosicionY();
         resume();
     }
 

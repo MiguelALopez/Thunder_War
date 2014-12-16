@@ -1,73 +1,66 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Código: 1326691
- * Fecha: 13-dic-2014
- * Nombre del Archivo: Control.java
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
 package Juego;
 
+import Juego.DAO.ConnectionConf;
+import Juego.DAO.ManejoPuntuacion;
+import Juego.DAO.ManejoUsuario;
+import Juego.Interfaz.Autentificar;
+
 import java.awt.event.*;
 
 public class Control {
     // Sincronizado
-    ThunderWar thunderWar;
-//    topGun thunderWar;
-//    Pantalla pantalla;
+    VentanaJuego ventanaJuego;
+    ConnectionConf connectionConf;
 
-    public Control(final ThunderWar thunderWar) {
-        this.thunderWar = thunderWar;
-//        this.pantalla = pantalla;
-
-        thunderWar.addWindowListener(
-                new WindowAdapter() {
+    public  Control(final Autentificar autentificar, final ManejoUsuario manejoUsuario, ManejoPuntuacion manejoPuntuacion){
+        autentificar.buttonIniciar.addActionListener(
+                new ActionListener() {
                     @Override
-                    public void windowClosing(WindowEvent e) {
-                        System.exit(0);
-                    }
-                }
-        );
-
-        //Eventos para los movimientos de la nave
-        thunderWar.addKeyListener(
-                new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                        if (thunderWar.iniciado && thunderWar.jugadores[0].vivo && thunderWar.jugadores[1].vivo) {
-                            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                                thunderWar.jugadores[0].disparar();
-                            }if (e.getKeyCode() == KeyEvent.VK_UP) {
-                                thunderWar.jugadores[0].arriba();
-                            }if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                                thunderWar.jugadores[0].abajo();
-                            }if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                                thunderWar.jugadores[0].izquierda();
-                            }if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                                thunderWar.jugadores[0].derecha();
-                            }if (e.getKeyCode() == KeyEvent.VK_W){
-                                thunderWar.jugadores[1].arriba();
-                            }if (e.getKeyCode() == KeyEvent.VK_A){
-                                thunderWar.jugadores[1].izquierda();
-                            }if (e.getKeyCode() == KeyEvent.VK_S){
-                                thunderWar.jugadores[1].abajo();
-                            }if (e.getKeyCode() == KeyEvent.VK_D){
-                                thunderWar.jugadores[1].derecha();
-                            }if (e.getKeyCode() == KeyEvent.VK_Q){
-                                thunderWar.jugadores[1].disparar();
-                            }
+                    public void actionPerformed(ActionEvent e) {
+                        String nick_name = autentificar.textNomUsuario.getText();
+                        String password = autentificar.passwordFieldUsuario.getText();
+//                        System.out.println(nick_name + " - " + password);
+                        if (manejoUsuario.autentificar(nick_name,password)){
+                            System.out.println("esta registrado");
+                        }else {
+                            System.out.println("no esta registrado");
                         }
                     }
                 }
         );
+    }
 
-        thunderWar.inicio.addActionListener(
-                new ActionListener() {
+    public Control(final VentanaJuego ventanaJuego) {
+        this.ventanaJuego = ventanaJuego;
+
+        //Eventos para los movimientos de la nave
+        ventanaJuego.addKeyListener(
+                new KeyAdapter() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
-                        thunderWar.inicio.setVisible(false);
-                        Jugador jugador = new Jugador("miguel",true, null, null, null, thunderWar);
-                        thunderWar.iniciarJuego(jugador);
+                    public void keyPressed(KeyEvent e) {
+                        if (ventanaJuego.iniciado && ventanaJuego.jugadores[0].vivo) {
+                            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                                ventanaJuego.jugadores[0].disparar();
+                            }if (e.getKeyCode() == KeyEvent.VK_UP) {
+                                ventanaJuego.jugadores[0].arriba();
+                            }if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                                ventanaJuego.jugadores[0].abajo();
+                            }if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                                ventanaJuego.jugadores[0].izquierda();
+                            }if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                                ventanaJuego.jugadores[0].derecha();
+                            }
+                        }
                     }
                 }
         );

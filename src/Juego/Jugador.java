@@ -1,15 +1,14 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Código: 1326691
- * Fecha: 13-dic-2014
- * Nombre del Archivo: Jugador.java
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
 package Juego;
-
-import java.applet.AudioClip;
-import java.awt.*;
 
 public class Jugador{
 
@@ -28,21 +27,17 @@ public class Jugador{
     //Configuraciones de un jugador
     int numJugador;
     boolean sonido;
-    Image imgAvion;
-    Image imgUsuario;
-    AudioClip sonidoDisparo;
+    int tipoImgNave;
     disparo disparos[];
 
     //Clases
-    ThunderWar thunderWar;
+    VentanaJuego ventanaJuego;
 
-    public Jugador(String nombre, boolean sonido, Image imgAvion, Image imgUsuario, AudioClip sonidoDisparo,  ThunderWar thunderWar) {
+    public Jugador(String nombre, boolean sonido, int tipoImgNave,  VentanaJuego ventanaJuego) {
         this.nombre = nombre;
         this.sonido = sonido;
-        this.imgAvion = imgAvion;
-        this.imgUsuario = imgUsuario;
-        this.sonidoDisparo = sonidoDisparo;
-        this.thunderWar = thunderWar;
+        this.tipoImgNave = tipoImgNave;
+        this.ventanaJuego = ventanaJuego;
         numDisparo = 0;
         puntos = 0;
     }
@@ -60,10 +55,10 @@ public class Jugador{
         for (int i = 0; i < disparos.length; i++) {
             //Iniciamos los disparos
             if (i < disparos.length){
-                disparos[i] = new disparo(thunderWar, 24, numJugador, velocidadDisparo); //Disparos del avion
+                disparos[i] = new disparo(ventanaJuego, 24, numJugador, velocidadDisparo); //Disparos del avion
             }
             else {
-//                disparos[i] = new disparo(thunderWar,true, 6); //Disparos de los enemigos
+//                disparos[i] = new disparo(ventanaJuego,true, 6); //Disparos de los enemigos
             }
             disparos[i].start();
             //Preparar los disparos para utilizarlos al pulsar espacio
@@ -135,30 +130,6 @@ public class Jugador{
 
     public void setSonido(boolean sonido) {
         this.sonido = sonido;
-    }
-
-    public Image getImgAvion() {
-        return imgAvion;
-    }
-
-    public void setImgAvion(Image imgAvion) {
-        this.imgAvion = imgAvion;
-    }
-
-    public Image getImgUsuario() {
-        return imgUsuario;
-    }
-
-    public void setImgUsuario(Image imgUsuario) {
-        this.imgUsuario = imgUsuario;
-    }
-
-    public AudioClip getSonidoDisparo() {
-        return sonidoDisparo;
-    }
-
-    public void setSonidoDisparo(AudioClip sonidoDisparo) {
-        this.sonidoDisparo = sonidoDisparo;
     }
 
     public int getPosicionX() {

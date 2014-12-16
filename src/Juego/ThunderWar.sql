@@ -4,7 +4,6 @@ DROP TABLE usuario;
 CREATE TABLE usuario (
   nick_name VARCHAR(30) NOT NULL PRIMARY KEY,
   password  VARCHAR(30) NOT NULL,
-  url_image TEXT,
   nombre    VARCHAR(50) NOT NULL,
   apellido  VARCHAR(50) NOT NULL,
   tipo_nave INT         NOT NULL,

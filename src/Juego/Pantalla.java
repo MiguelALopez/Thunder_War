@@ -1,8 +1,10 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Código: 1326691
- * Fecha: 13-dic-2014
- * Nombre del Archivo: Pantalla.java
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
@@ -12,9 +14,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Pantalla extends JPanel implements Runnable{
-    ThunderWar thunderWar;
-//    topGun thunderWar;
-    Image imageBuffer;
+    VentanaJuego ventanaJuego;
+//    topGun ventanaJuego;
+
 
     //Imagenes
     Image imgAvion;
@@ -22,6 +24,7 @@ public class Pantalla extends JPanel implements Runnable{
     Image imgEnemigo;
     Image imgExplosion;
 
+    Image imageBuffer;
     Graphics graphicsBuffer;
 
     Thread hilo;
@@ -33,7 +36,7 @@ public class Pantalla extends JPanel implements Runnable{
         imgEnemigo = Toolkit.getDefaultToolkit().getImage("enemigo.png");
         imgExplosion = Toolkit.getDefaultToolkit().getImage("explosion.png");
 
-        this.thunderWar = (ThunderWar) jFrame;
+        this.ventanaJuego = (VentanaJuego) jFrame;
 
         hilo = new Thread(this);
     }
@@ -41,7 +44,7 @@ public class Pantalla extends JPanel implements Runnable{
 
 
     public void paint(Graphics g) {
-        if (thunderWar.iniciado){
+        if (ventanaJuego.iniciado){
             imageBuffer = createImage(getWidth(), getHeight());
             graphicsBuffer = imageBuffer.getGraphics();
 
@@ -60,23 +63,23 @@ public class Pantalla extends JPanel implements Runnable{
 
     public void actualizarAvion(Graphics g) {
         //pintar aviones
-        for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i] != null && thunderWar.jugadores[i].vivo){
+        for (int i = 0; i < ventanaJuego.jugadores.length; i++){
+            if (ventanaJuego.jugadores[i] != null && ventanaJuego.jugadores[i].vivo){
                 g.drawImage(imgAvion,
-                        thunderWar.jugadores[i].getPosicionX(),
-                        thunderWar.jugadores[i].getPosicionY(),
+                        ventanaJuego.jugadores[i].getPosicionX(),
+                        ventanaJuego.jugadores[i].getPosicionY(),
                         50, 50, null);
             }
         }
     }
 
     public void actualizarDisparos(Graphics g) {
-        for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i] != null && thunderWar.jugadores[i].vivo){
-                for (int j = 0; j < thunderWar.jugadores[i].disparos.length; j++){
+        for (int i = 0; i < ventanaJuego.jugadores.length; i++){
+            if (ventanaJuego.jugadores[i] != null && ventanaJuego.jugadores[i].vivo){
+                for (int j = 0; j < ventanaJuego.jugadores[i].disparos.length; j++){
 
-                    int x = thunderWar.jugadores[i].disparos[j].retornarX();
-                    int y = thunderWar.jugadores[i].disparos[j].retornarY();
+                    int x = ventanaJuego.jugadores[i].disparos[j].retornarX();
+                    int y = ventanaJuego.jugadores[i].disparos[j].retornarY();
                     g.drawImage(imgDisparo, x + 40, y, 3, 9, null);
                     g.drawImage(imgDisparo, x + 10, y, 3, 9, null);
                 }
@@ -85,10 +88,10 @@ public class Pantalla extends JPanel implements Runnable{
     }
 
     public void actualizarEnemigos(Graphics g) {
-        for (int i = 0; i < thunderWar.enemig.length; i++) {
-            int x = thunderWar.enemig[i].retornarX();
-            int y = thunderWar.enemig[i].retornarY();
-            if (thunderWar.enemig[i].muerto() == false)
+        for (int i = 0; i < ventanaJuego.enemig.length; i++) {
+            int x = ventanaJuego.enemig[i].retornarX();
+            int y = ventanaJuego.enemig[i].retornarY();
+            if (ventanaJuego.enemig[i].muerto() == false)
                 g.drawImage(imgEnemigo, x, y, 50, 50, null);
             else
                 g.drawImage(imgExplosion, x, y, 50, 50, null);
@@ -97,36 +100,36 @@ public class Pantalla extends JPanel implements Runnable{
 
     //Metodo que verifica si el avion de un jugador colisiona contra uno enemigo
     void colisionAvionEnemigo(Graphics g) {
-        for (int i = 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i]!= null && thunderWar.jugadores[i].vivo){
-                for (int j = 0; j < thunderWar.enemig.length; j++) {
+        for (int i = 0; i < ventanaJuego.jugadores.length; i++){
+            if (ventanaJuego.jugadores[i]!= null && ventanaJuego.jugadores[i].vivo){
+                for (int j = 0; j < ventanaJuego.enemig.length; j++) {
                     int w1, h1, w2, h2, x1, x2, y1, y2;
                     w1 = 50;
                     h1 = 50;
                     w2 = 50;
                     h2 = 50;
                     //Posicion del avion
-                    x1 = thunderWar.jugadores[i].getPosicionX();
-                    y1 = thunderWar.jugadores[i].getPosicionY();
+                    x1 = ventanaJuego.jugadores[i].getPosicionX();
+                    y1 = ventanaJuego.jugadores[i].getPosicionY();
 
                     //Posicion del enemigo
-                    x2 = thunderWar.enemig[j].retornarX();
-                    y2 = thunderWar.enemig[j].retornarY();
+                    x2 = ventanaJuego.enemig[j].retornarX();
+                    y2 = ventanaJuego.enemig[j].retornarY();
 
                     //Comprobar posiciones enemigo y disparos
                     if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
-                        if (thunderWar.enemig[j].muerto() == false) {
-                            thunderWar.jugadores[i].golpe();
+                        if (ventanaJuego.enemig[j].muerto() == false) {
+                            ventanaJuego.jugadores[i].golpe();
                             if (i == 0){
-                                thunderWar.vida.setValue(thunderWar.jugadores[0].getVida());
+                                ventanaJuego.vida.setValue(ventanaJuego.jugadores[0].getVida());
                             }
 
 
                         }
-                        thunderWar.enemig[j].explotar();
-                        thunderWar.jugadores[i].disparos[j].explotar();
-                        if (thunderWar.checkJugadoresVivos()){
-                            thunderWar.terminarPartida();
+                        ventanaJuego.enemig[j].explotar();
+                        ventanaJuego.jugadores[i].disparos[j].explotar();
+                        if (ventanaJuego.checkJugadoresVivos()){
+                            ventanaJuego.terminarPartida();
 
                         }
                     }
@@ -136,10 +139,10 @@ public class Pantalla extends JPanel implements Runnable{
     }
 
     void colisionDisparoEnemigo() {
-        for (int i= 0; i < thunderWar.jugadores.length; i++){
-            if (thunderWar.jugadores[i] != null){
-                for (int j = 0; j < thunderWar.jugadores[i].disparos.length; j++){
-                    for (int k = 0; k < thunderWar.enemig.length; k++){
+        for (int i= 0; i < ventanaJuego.jugadores.length; i++){
+            if (ventanaJuego.jugadores[i] != null){
+                for (int j = 0; j < ventanaJuego.jugadores[i].disparos.length; j++){
+                    for (int k = 0; k < ventanaJuego.enemig.length; k++){
                         int w1, h1, w2, h2, x1, y1, x2, y2;
                         w1 = 50;
                         h1 = 50;
@@ -147,17 +150,17 @@ public class Pantalla extends JPanel implements Runnable{
                         h2 = 9;
 
                         //Posicion del disparo
-                        x1 = thunderWar.jugadores[i].disparos[j].retornarX();
-                        y1 = thunderWar.jugadores[i].disparos[j].retornarY();
+                        x1 = ventanaJuego.jugadores[i].disparos[j].retornarX();
+                        y1 = ventanaJuego.jugadores[i].disparos[j].retornarY();
 
                         //Posicion del enemigo
-                        x2 = thunderWar.enemig[k].retornarX();
-                        y2 = thunderWar.enemig[k].retornarY();
+                        x2 = ventanaJuego.enemig[k].retornarX();
+                        y2 = ventanaJuego.enemig[k].retornarY();
 
                         //Comprobar posiciones enemigo y disparos
                         if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
-                            thunderWar.enemig[k].explotar();
-                            thunderWar.jugadores[i].disparos[j].explotar();
+                            ventanaJuego.enemig[k].explotar();
+                            ventanaJuego.jugadores[i].disparos[j].explotar();
                         }
                     }
                 }

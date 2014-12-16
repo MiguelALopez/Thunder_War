@@ -1,20 +1,20 @@
+/***********************************************
+ * Autor: Miguel Angel Lopez Fernandez
+ * Autor: Manuel Alejandro Mena Salazar
+ * Autor: Luis Carlos Montalvo
+ * Código: 1326691 -1329107 - 1329088
+ * Fecha: 14-dic-2014
+ * Nombre del Archivo: ConnectionConf.java
+ * Plan: Ingeniería de Sistemas - 3743
+ * Institución Educativa: Universidad del Valle
+ * **********************************************/
 package Juego;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
-/**
- *
- * @author Alejandro
- */
 public class Temporizador extends Thread {
 
     private int segundos       = 0;
     private int numeroSegundos = 0;
-    ThunderWar thunderWar;
+    VentanaJuego ventanaJuego;
 
 
     public void run() {
@@ -23,17 +23,17 @@ public class Temporizador extends Thread {
                 sleep(1000);
             } catch (InterruptedException ex) {}
             segundos+=1;
-            thunderWar.tiempo.setText(Integer.toString(numeroSegundos-segundos));
+            ventanaJuego.tiempo.setText(Integer.toString(numeroSegundos-segundos));
         }
-        thunderWar.terminarPartida();
+        ventanaJuego.terminarPartida();
 
         suspend();
     }
 
-    public Temporizador(ThunderWar tp, int numeroSegundos) {
-        this.thunderWar = tp;
+    public Temporizador(VentanaJuego tp, int numeroSegundos) {
+        this.ventanaJuego = tp;
         this.numeroSegundos = numeroSegundos;
-//        thunderWar.tiempo.setText(Integer.toString(numeroSegundos-segundos));
+//        ventanaJuego.tiempo.setText(Integer.toString(numeroSegundos-segundos));
     }
 }
 
