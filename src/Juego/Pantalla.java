@@ -31,10 +31,20 @@ public class Pantalla extends JPanel implements Runnable{
     public Pantalla(JFrame jFrame){
 
         //Cargar Imagenes
-        imgAvion = Toolkit.getDefaultToolkit().getImage("avion.png");
-        imgDisparo = Toolkit.getDefaultToolkit().getImage("disparo.jpg");
-        imgEnemigo = Toolkit.getDefaultToolkit().getImage("enemigo.png");
-        imgExplosion = Toolkit.getDefaultToolkit().getImage("explosion.png");
+        try{
+            imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion1.png")).getImage();
+            imgDisparo = new ImageIcon(getClass().getResource("Imagenes/disparo.jpg")).getImage();
+            imgEnemigo = new ImageIcon(getClass().getResource("Imagenes/enemigo.png")).getImage();
+            imgExplosion = new ImageIcon(getClass().getResource("Imagenes/explosion.png")).getImage();
+        }catch (NullPointerException e){
+            System.err.println("Error al cargar las imagenes de las naves");
+            imgAvion = Toolkit.getDefaultToolkit().getImage("");
+            imgDisparo = Toolkit.getDefaultToolkit().getImage("");
+            imgEnemigo = Toolkit.getDefaultToolkit().getImage("");
+            imgExplosion = Toolkit.getDefaultToolkit().getImage("");
+        }
+
+
 
         this.ventanaJuego = (VentanaJuego) jFrame;
 

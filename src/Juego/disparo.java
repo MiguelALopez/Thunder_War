@@ -30,11 +30,11 @@ class disparo extends Thread {
 
 
 //    topGun ventanaJuego;
-    VentanaJuego tg;
+    VentanaJuego ventanaJuego;
     //Constructor para una nave de el jugador
     disparo(JFrame jf, int velocidadNave, int numJugador, int velocidadDisparo) {
 //        ventanaJuego = (topGun) jf;
-        tg = (VentanaJuego) jf;
+        ventanaJuego = (VentanaJuego) jf;
 
         this.velocidadNave = velocidadNave;
         this.numJugador = numJugador;
@@ -43,7 +43,7 @@ class disparo extends Thread {
     //Constructor para una nave enemiga
     disparo(JFrame jf, boolean e, int velocidadEnemigos, int velocidadDisparo) {
 //        ventanaJuego = (topGun) jf;
-        tg = (VentanaJuego) jf;
+        ventanaJuego = (VentanaJuego) jf;
         enemigo = e;
         this.velocidadEnemigos = velocidadEnemigos;
         this.velocidadDisparo = velocidadDisparo;
@@ -53,12 +53,12 @@ class disparo extends Thread {
     {
         if (!enemigo) {
             //Posicion del avion
-            x = tg.jugadores[numJugador].getPosicionX();
-            y = tg.jugadores[numJugador].getPosicionY();
+            x = ventanaJuego.jugadores[numJugador].getPosicionX();
+            y = ventanaJuego.jugadores[numJugador].getPosicionY();
         } else {
             //Posicion Enemigo
-            x = tg.enemig[numeroEnemigo].retornarX();
-            y = tg.enemig[numeroEnemigo].retornarY();
+            x = ventanaJuego.enemig[numeroEnemigo].retornarX();
+            y = ventanaJuego.enemig[numeroEnemigo].retornarY();
         }
 
 
@@ -89,8 +89,8 @@ class disparo extends Thread {
 
     public void fuego() {
         //Posicion del avion
-        x = tg.jugadores[numJugador].getPosicionX();
-        y = tg.jugadores[numJugador].getPosicionY();
+        x = ventanaJuego.jugadores[numJugador].getPosicionX();
+        y = ventanaJuego.jugadores[numJugador].getPosicionY();
         resume();
     }
 
@@ -98,8 +98,8 @@ class disparo extends Thread {
         //Posicion del avion
 //        x = ventanaJuego.retornarX();
 //        y = ventanaJuego.retornarY();
-        x = tg.jugadores[numJugador].getPosicionX();
-        y = tg.jugadores[numJugador].getPosicionY();
+        x = ventanaJuego.jugadores[numJugador].getPosicionX();
+        y = ventanaJuego.jugadores[numJugador].getPosicionY();
 
         numeroEnemigo = numero;
         resume();

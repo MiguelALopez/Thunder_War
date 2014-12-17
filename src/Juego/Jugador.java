@@ -12,8 +12,15 @@ package Juego;
 
 public class Jugador{
 
-    //Datos de un jugador
+    //Datos y configuraciones de un jugador
+    String nick_name;
+    String password;
     String nombre;
+    String apellido;
+    int tipoImgNave;
+    boolean sonido;
+    int numJugador;
+
 
     //Datos de la nave
     int vida;
@@ -24,20 +31,23 @@ public class Jugador{
     boolean vivo;
     int numDisparo;
 
-    //Configuraciones de un jugador
-    int numJugador;
-    boolean sonido;
-    int tipoImgNave;
+
+
     disparo disparos[];
 
     //Clases
     VentanaJuego ventanaJuego;
 
-    public Jugador(String nombre, boolean sonido, int tipoImgNave,  VentanaJuego ventanaJuego) {
+    public Jugador(String nick_name, String password, String nombre, String apellido, int tipoImgNave,
+                   boolean sonido, VentanaJuego ventanaJuego) {
+        this.nick_name = nick_name;
+        this.password = password;
         this.nombre = nombre;
-        this.sonido = sonido;
+        this.apellido = apellido;
         this.tipoImgNave = tipoImgNave;
+        this.sonido = sonido;
         this.ventanaJuego = ventanaJuego;
+
         numDisparo = 0;
         puntos = 0;
     }
@@ -124,13 +134,15 @@ public class Jugador{
         this.puntos = puntos;
     }
 
-    public boolean isSonido() {
+    public boolean getSonido() {
         return sonido;
     }
 
     public void setSonido(boolean sonido) {
         this.sonido = sonido;
     }
+
+
 
     public int getPosicionX() {
         return posicionX;
@@ -162,5 +174,53 @@ public class Jugador{
 
     public void setDisparos(disparo[] disparos) {
         this.disparos = disparos;
+    }
+
+    public String getNick_name() {
+        return nick_name;
+    }
+
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getTipoImgNave() {
+        return tipoImgNave;
+    }
+
+    public void setTipoImgNave(int tipoImgNave) {
+        this.tipoImgNave = tipoImgNave;
+    }
+
+    public int getNumJugador() {
+        return numJugador;
+    }
+
+    public void setNumJugador(int numJugador) {
+        this.numJugador = numJugador;
+    }
+
+    public boolean isVivo() {
+        return vivo;
+    }
+
+    public void setVivo(boolean vivo) {
+        this.vivo = vivo;
     }
 }

@@ -18,7 +18,7 @@ CREATE TABLE puntajes(
 );
 
 INSERT INTO usuario(nick_name, password, nombre, apellido, tipo_nave, sonido, estado)
-    VALUES ('miguelalf', '123456', 'miguel', 'lopez', 1, FALSE, TRUE );
+    VALUES ('miguelalf', '123456', 'miguel', 'lopez', 2, FALSE, TRUE );
 
 INSERT INTO usuario(nick_name, password, nombre, apellido, tipo_nave, sonido, estado)
 VALUES ('pepito', '123456', 'pepito', 'perez', 1, FALSE, TRUE);

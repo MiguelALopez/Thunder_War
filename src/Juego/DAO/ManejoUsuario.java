@@ -76,7 +76,7 @@ public class ManejoUsuario {
             PreparedStatement consulta = null;
 
             String editSQL = "UPDATE usuario SET password=?, nombre=?, apellido=?, tipo_nave=?," +
-                    "sonido=?";
+                    "sonido=? WHERE nick_name=? AND estado=TRUE";
             try {
                 consulta = connection.prepareStatement(editSQL);
 
@@ -85,6 +85,7 @@ public class ManejoUsuario {
                 consulta.setString(3, apellido);
                 consulta.setInt(4, tipo_nave);
                 consulta.setBoolean(5, sonido);
+                consulta.setString(6, nick_name);
 
                 consulta.executeUpdate();
 

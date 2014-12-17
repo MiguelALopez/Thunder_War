@@ -155,4 +155,13 @@ public class VentanaJuego extends JFrame{
         //Hacer
     }
 
+    public Jugador getJugador(int numJugador){
+        try{
+            return jugadores[numJugador];
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.err.println("El jugador no se encuentra");
+            return null;
+        }
+    }
+
 }

@@ -17,6 +17,8 @@ public class CrearUsuario extends JFrame{
 
     JButton buttonRegistrar;
     JButton buttonCancelar;
+    JButton buttonNave;
+
 
     JTextField textFieldNickName;
     JPasswordField passwordFieldContraseña;
@@ -43,59 +45,57 @@ public class CrearUsuario extends JFrame{
         jComboBoxTipoNave.addItem("4");
         jComboBoxTipoNave.addItem("5");
 
-        setLayout(new BorderLayout(20,20));
+//        setLayout(new BorderLayout(20,20));
+        setLayout(new FlowLayout());
+
+        JPanel panelALL = new JPanel();
+        panelALL.setLayout(new BorderLayout(20, 20));
 
         JPanel panelDatosRegistro = new JPanel();
-        panelDatosRegistro.setLayout(new GridLayout(2,2,15,15));
+        panelDatosRegistro.setOpaque(false);
+        panelDatosRegistro.setLayout(new GridLayout(4, 2, 15, 15));
         panelDatosRegistro.add(new JLabel("Nick Name"));
         panelDatosRegistro.add(textFieldNickName);
         panelDatosRegistro.add(new JLabel("Password"));
         panelDatosRegistro.add(passwordFieldContraseña);
-
-
-        JPanel panelDatosPersonales = new JPanel();
-        panelDatosPersonales.setLayout(new GridLayout(2,2,15,15));
-        panelDatosPersonales.add(new JLabel("Nombre"));
-        panelDatosPersonales.add(textFieldNombre);
-        panelDatosPersonales.add(new JLabel("Apellido"));
-        panelDatosPersonales.add(textFieldApellido);
+        panelDatosRegistro.add(new JLabel("Nombre"));
+        panelDatosRegistro.add(textFieldNombre);
+        panelDatosRegistro.add(new JLabel("Apellido"));
+        panelDatosRegistro.add(textFieldApellido);
 
         JPanel panelCargarImagen = new JPanel();
-        panelCargarImagen.setLayout(new GridLayout(2, 2, 15, 15));
+        panelCargarImagen.setOpaque(false);
+        panelCargarImagen.setLayout(new GridLayout(1, 2, 15, 15));
 
         JPanel panelContentInfNave = new JPanel();
+        panelContentInfNave.setOpaque(false);
         panelContentInfNave.setLayout(new BorderLayout());
         panelContentInfNave.add(new JLabel("Tipo de Nave"), BorderLayout.NORTH);
         panelContentInfNave.add(jComboBoxTipoNave,BorderLayout.CENTER);
 
-
-        ImageIcon imagen = new ImageIcon(getClass().getResource("../avion.png"));
-//        Image imgAvion = Toolkit.getDefaultToolkit().getImage("avion.png");
+        ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion1.png"));
         JPanel panelImgTipoNave = new JPanel();
-        JButton marcoImagen = new JButton();
-        marcoImagen.setIcon(imagen);
-        marcoImagen.setEnabled(true);
-        panelImgTipoNave.add(marcoImagen);
-
-//        JPanel panelContentBottom = new JPanel();
-//        panelContentBottom.add(buttonRegistrar);
-//        panelContentBottom.add(buttonCancelar)
-
+        panelImgTipoNave.setOpaque(false);
+        buttonNave = new JButton();
+        buttonNave.setIcon(imagen);
+        buttonNave.setEnabled(true);
+        panelImgTipoNave.add(buttonNave);
         panelCargarImagen.add(panelContentInfNave);
         panelCargarImagen.add(panelImgTipoNave);
-        panelCargarImagen.add(buttonCancelar);
-        panelCargarImagen.add(buttonRegistrar);
 
 
+        JPanel panelcontButAcept = new JPanel();
+        panelcontButAcept.setOpaque(false);
+        panelcontButAcept.add(buttonCancelar);
+        panelcontButAcept.add(buttonRegistrar);
 
+        panelALL.add(panelDatosRegistro, BorderLayout.NORTH);
+        panelALL.add(panelCargarImagen, BorderLayout.CENTER);
+        panelALL.add(panelcontButAcept, BorderLayout.SOUTH);
 
+        add(panelALL);
 
-        add(panelDatosRegistro, BorderLayout.NORTH);
-        add(panelDatosPersonales, BorderLayout.CENTER);
-        add(panelCargarImagen, BorderLayout.SOUTH);
-
-
-        setSize(330, 350);
+        setSize(280, 320);
         setResizable(false);
     }
 
