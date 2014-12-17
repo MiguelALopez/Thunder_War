@@ -10,14 +10,20 @@
  * **********************************************/
 package Juego;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 public class VentanaJuego extends JFrame{
 
 
+    AudioClip clipDisparo;
 
-//    JLabel lpuntos;
     JTextField textFieldPuntos;
     JPanel panelBarraEstado;
     JProgressBar progressBarVida;
@@ -55,6 +61,8 @@ public class VentanaJuego extends JFrame{
         progressBarVida.setValue(100);
         progressBarVida.setForeground(Color.RED);
         add(panelBarraEstado, BorderLayout.SOUTH);
+
+        cargarSonidos();
 
         //Inicializo las clases
         jugadores = new Jugador[10];
@@ -104,7 +112,7 @@ public class VentanaJuego extends JFrame{
 
     public void nivelUno(int tiempo){
         // envia datos a lanzar enemigo para darle un nv de dif
-        jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight(), 0, 1, 10);
+        jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight(), 0, 1, 10, clipDisparo);
         enemig = new enemigo[7];
         iniciado = true;
 
@@ -127,7 +135,7 @@ public class VentanaJuego extends JFrame{
 
     public void nivelDos(int tiempo){
         // envia datos a lanzar enemigo para darle un nv de dif
-        jugadores[0].iniciarPartida(100, 16, 16, getWidth(), getHeight(), 0, 2, 20);
+        jugadores[0].iniciarPartida(100, 16, 16, getWidth(), getHeight(), 0, 2, 20, clipDisparo);
         enemig = new enemigo[10];
         iniciado = true;
 
@@ -150,7 +158,7 @@ public class VentanaJuego extends JFrame{
 
     public void nivelTres(int tiempo){
         // envia datos a lanzar enemigo para darle un nv de dif
-        jugadores[0].iniciarPartida(100, 12, 14, getWidth(), getHeight(), 0, 3, 30);
+        jugadores[0].iniciarPartida(100, 12, 14, getWidth(), getHeight(), 0, 3, 30, clipDisparo);
         enemig = new enemigo[20];
         iniciado = true;
 
@@ -193,6 +201,15 @@ public class VentanaJuego extends JFrame{
             System.err.println("El jugador no se encuentra");
             return null;
         }
+    }
+
+    public void cargarSonidos(){
+        try{
+            clipDisparo = Applet.newAudioClip(VentanaJuego.class.getResource("disparo.aiff"));
+        }catch (NullPointerException e){
+            System.err.println("Error al cargar los audios");
+        }
+
     }
 
 }

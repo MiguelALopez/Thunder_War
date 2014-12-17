@@ -10,12 +10,18 @@
  * **********************************************/
 package Juego;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Pantalla extends JPanel implements Runnable{
     VentanaJuego ventanaJuego;
-//    topGun ventanaJuego;
+//    AudioClip clipDisparo;
 
 
     //Imagenes
@@ -34,6 +40,7 @@ public class Pantalla extends JPanel implements Runnable{
         cargarImagenes();
         hilo = new Thread(this);
     }
+
 
     public void cargarImagenes(){
         try{

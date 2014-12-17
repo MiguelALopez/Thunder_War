@@ -10,6 +10,8 @@
  * **********************************************/
 package Juego;
 
+import java.applet.AudioClip;
+
 public class Jugador{
 
     //Datos y configuraciones de un jugador
@@ -31,6 +33,7 @@ public class Jugador{
     int danoPorGolpe;
     boolean vivo;
     int numDisparo;
+    AudioClip clipDisparo;
 
 
 
@@ -54,11 +57,12 @@ public class Jugador{
     }
 
     public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth, int numJugador,
-                               int velocidadDisparo, int danoPorGolpe){
+                               int velocidadDisparo, int danoPorGolpe, AudioClip clipDisparo){
         this.vida = vida;
         this.velocidadNave = velocidadNave;
         this.numJugador = numJugador;
         this.danoPorGolpe = danoPorGolpe;
+        this.clipDisparo = clipDisparo;
 
         disparos = new disparo[numDisparos];
         vivo = true;
@@ -82,6 +86,10 @@ public class Jugador{
             numDisparo = 0;
         }
         disparos[numDisparo].fuego();
+        if (sonido = true){
+            clipDisparo.stop();
+            clipDisparo.play();
+        }
     }
 
     public void golpe(){
