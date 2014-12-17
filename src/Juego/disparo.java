@@ -22,18 +22,13 @@ class disparo extends Thread {
     int numJugador;
     int numeroEnemigo = 0;
     int velocidadDisparo;
-    //Clase de topGun
 
     //enemigo ==true si el disparo es hecho por un avion enemigo
     boolean enemigo = false;
-    //numeroEnemigo devuelve el numero del avion que efectua el disparo
 
-
-//    topGun ventanaJuego;
     VentanaJuego ventanaJuego;
     //Constructor para una nave de el jugador
-    disparo(JFrame jf, int velocidadNave, int numJugador, int velocidadDisparo) {
-//        ventanaJuego = (topGun) jf;
+    disparo(JFrame jf,  int numJugador, int velocidadDisparo) {
         ventanaJuego = (VentanaJuego) jf;
 
         this.velocidadNave = velocidadNave;
@@ -41,8 +36,7 @@ class disparo extends Thread {
         this.velocidadDisparo = velocidadDisparo;
     }
     //Constructor para una nave enemiga
-    disparo(JFrame jf, boolean e, int velocidadEnemigos, int velocidadDisparo) {
-//        ventanaJuego = (topGun) jf;
+    disparo(JFrame jf, boolean e, int velocidadDisparo) {
         ventanaJuego = (VentanaJuego) jf;
         enemigo = e;
         this.velocidadEnemigos = velocidadEnemigos;
@@ -65,8 +59,8 @@ class disparo extends Thread {
         while (y > 0) {
             try {
                 //Mover Disparo
-                if (enemigo) y = y + velocidadEnemigos;
-                else y = y - velocidadNave;
+                if (enemigo) y = y + 2;
+                else y = y - 1;
                 //Retardar 30 milisegundos
                 sleep(velocidadDisparo);
             } catch (InterruptedException ie) {

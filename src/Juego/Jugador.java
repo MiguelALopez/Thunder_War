@@ -28,6 +28,7 @@ public class Jugador{
     int posicionX;
     int posicionY;
     int velocidadNave;
+    int danoPorGolpe;
     boolean vivo;
     int numDisparo;
 
@@ -52,10 +53,12 @@ public class Jugador{
         puntos = 0;
     }
 
-    public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth, int numJugador, int velocidadDisparo){
+    public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth, int numJugador,
+                               int velocidadDisparo, int danoPorGolpe){
         this.vida = vida;
         this.velocidadNave = velocidadNave;
         this.numJugador = numJugador;
+        this.danoPorGolpe = danoPorGolpe;
 
         disparos = new disparo[numDisparos];
         vivo = true;
@@ -64,12 +67,8 @@ public class Jugador{
 
         for (int i = 0; i < disparos.length; i++) {
             //Iniciamos los disparos
-            if (i < disparos.length){
-                disparos[i] = new disparo(ventanaJuego, 24, numJugador, velocidadDisparo); //Disparos del avion
-            }
-            else {
-//                disparos[i] = new disparo(ventanaJuego,true, 6); //Disparos de los enemigos
-            }
+            disparos[i] = new disparo(ventanaJuego, numJugador, velocidadDisparo); //Disparos del avion
+
             disparos[i].start();
             //Preparar los disparos para utilizarlos al pulsar espacio
             disparos[i].preparar();
@@ -86,7 +85,7 @@ public class Jugador{
     }
 
     public void golpe(){
-        vida -= 10;
+        vida -= danoPorGolpe;
         System.out.println("El jugador " + numJugador + " tiene " + vida + " de vida");
         if (vida <= 0)
         {
@@ -141,8 +140,6 @@ public class Jugador{
     public void setSonido(boolean sonido) {
         this.sonido = sonido;
     }
-
-
 
     public int getPosicionX() {
         return posicionX;

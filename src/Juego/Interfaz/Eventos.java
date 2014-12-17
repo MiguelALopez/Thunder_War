@@ -133,7 +133,8 @@ public class Eventos {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         menu.panelContArcadeIni.setVisible(true);
-                        menu.panelContButIni.setVisible(false);
+                        menu.panelContButOpciones.setVisible(false);
+//                        menu.panelContButIni.setVisible(false);
                     }
                 }
         );
@@ -195,6 +196,18 @@ public class Eventos {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         checkIconNavesMenu();
+                    }
+                }
+        );
+        menu.buttonIniciarJuego.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println(menu.jComboBoxNivel.getSelectedIndex() + " - ");
+                        ventanaJuego.iniciarJuego(jugador, menu.jComboBoxNivel.getSelectedIndex(),
+                                Integer.parseInt(menu.jSpinnerTiempo.getValue().toString()));
+                        ventanaJuego.setVisible(true);
+                        ventanaJuego.requestFocus();
                     }
                 }
         );

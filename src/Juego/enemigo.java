@@ -28,7 +28,7 @@ class enemigo extends Thread {
     //Clase de topGun
 //    topGun ventanaJuego;
     VentanaJuego ventanaJuego;
-    enemigo(JFrame jf, int movimiento, int velocidadEnemigo) {
+    enemigo(JFrame jf, int velocidadEnemigo) {
         ventanaJuego = (VentanaJuego) jf;
         this.velocidadEnemigo = velocidadEnemigo;
 //        this.velocidadCreacion = velocidadCreacion;
@@ -72,7 +72,7 @@ class enemigo extends Thread {
             }
             y += movimiento;
         }
-        //Volver al estado inicial para preparar de nuevo el disparo
+        //Volver al panelBarraEstado inicial para preparar de nuevo el disparo
         if (!vivo){
             try {
                 sleep(350);
@@ -97,9 +97,9 @@ class enemigo extends Thread {
     public void explotar() {
         int puntos;
         vivo = false;
-        puntos = Integer.valueOf(ventanaJuego.puntos.getText());
+        puntos = Integer.valueOf(ventanaJuego.textFieldPuntos.getText());
         puntos += 10;
-        ventanaJuego.puntos.setText(String.valueOf(puntos));
+        ventanaJuego.textFieldPuntos.setText(String.valueOf(puntos));
     }
 
     public void fuego() {

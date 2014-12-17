@@ -160,6 +160,6 @@ public class Menu extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(945, 531);
         setResizable(false);
-        setVisible(true);
+//        setVisible(true);
     }
 }

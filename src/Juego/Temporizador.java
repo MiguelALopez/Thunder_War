@@ -23,7 +23,7 @@ public class Temporizador extends Thread {
                 sleep(1000);
             } catch (InterruptedException ex) {}
             segundos+=1;
-            ventanaJuego.tiempo.setText(Integer.toString(numeroSegundos-segundos));
+            ventanaJuego.textFieldTiempo.setText(Integer.toString(numeroSegundos-segundos));
         }
         ventanaJuego.terminarPartida();
 
@@ -33,7 +33,6 @@ public class Temporizador extends Thread {
     public Temporizador(VentanaJuego tp, int numeroSegundos) {
         this.ventanaJuego = tp;
         this.numeroSegundos = numeroSegundos;
-//        ventanaJuego.tiempo.setText(Integer.toString(numeroSegundos-segundos));
     }
 }
 

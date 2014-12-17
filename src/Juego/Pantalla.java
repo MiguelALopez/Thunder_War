@@ -28,14 +28,35 @@ public class Pantalla extends JPanel implements Runnable{
     Graphics graphicsBuffer;
 
     Thread hilo;
-    public Pantalla(JFrame jFrame){
+    public Pantalla(JFrame ventanaJuego){
 
-        //Cargar Imagenes
+        this.ventanaJuego = (VentanaJuego) ventanaJuego;
+        cargarImagenes();
+        hilo = new Thread(this);
+    }
+
+    public void cargarImagenes(){
         try{
-            imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion1.png")).getImage();
             imgDisparo = new ImageIcon(getClass().getResource("Imagenes/disparo.jpg")).getImage();
             imgEnemigo = new ImageIcon(getClass().getResource("Imagenes/enemigo.png")).getImage();
             imgExplosion = new ImageIcon(getClass().getResource("Imagenes/explosion.png")).getImage();
+            switch (ventanaJuego.jugadores[0].tipoImgNave){
+                case 0:{
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion1.png")).getImage();
+                }break;
+                case 1:{
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion21.png")).getImage();
+                }break;
+                case 2:{
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion3.png")).getImage();
+                }break;
+                case 3:{
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion4.png")).getImage();
+                }break;
+                case 4:{
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion5.png")).getImage();
+                }break;
+            }
         }catch (NullPointerException e){
             System.err.println("Error al cargar las imagenes de las naves");
             imgAvion = Toolkit.getDefaultToolkit().getImage("");
@@ -43,12 +64,6 @@ public class Pantalla extends JPanel implements Runnable{
             imgEnemigo = Toolkit.getDefaultToolkit().getImage("");
             imgExplosion = Toolkit.getDefaultToolkit().getImage("");
         }
-
-
-
-        this.ventanaJuego = (VentanaJuego) jFrame;
-
-        hilo = new Thread(this);
     }
 
 
@@ -126,18 +141,17 @@ public class Pantalla extends JPanel implements Runnable{
                     x2 = ventanaJuego.enemig[j].retornarX();
                     y2 = ventanaJuego.enemig[j].retornarY();
 
-                    //Comprobar posiciones enemigo y disparos
+                    //Comprobar posiciones enemigo y jugadores
                     if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
                         if (ventanaJuego.enemig[j].muerto() == false) {
                             ventanaJuego.jugadores[i].golpe();
                             if (i == 0){
-                                ventanaJuego.vida.setValue(ventanaJuego.jugadores[0].getVida());
+                                ventanaJuego.progressBarVida.setValue(ventanaJuego.jugadores[0].getVida());
                             }
 
 
                         }
                         ventanaJuego.enemig[j].explotar();
-                        ventanaJuego.jugadores[i].disparos[j].explotar();
                         if (ventanaJuego.checkJugadoresVivos()){
                             ventanaJuego.terminarPartida();
 
