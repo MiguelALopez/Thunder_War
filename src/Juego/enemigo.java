@@ -25,13 +25,10 @@ class enemigo extends Thread {
     int velocidadEnemigo = 6;
     int velocidadCreacion;
 
-    //Clase de topGun
-//    topGun ventanaJuego;
     VentanaJuego ventanaJuego;
     enemigo(JFrame jf, int velocidadEnemigo) {
         ventanaJuego = (VentanaJuego) jf;
         this.velocidadEnemigo = velocidadEnemigo;
-//        this.velocidadCreacion = velocidadCreacion;
     }
 
 
@@ -94,12 +91,16 @@ class enemigo extends Thread {
         suspend();
     }
 
-    public void explotar() {
-        int puntos;
+    public void explotar(boolean chocoAvionEnemigo) {
+
         vivo = false;
-        puntos = Integer.valueOf(ventanaJuego.textFieldPuntos.getText());
-        puntos += 10;
-        ventanaJuego.textFieldPuntos.setText(String.valueOf(puntos));
+
+        if(!chocoAvionEnemigo) {
+            int puntos;
+            puntos = Integer.valueOf(ventanaJuego.textFieldPuntos.getText());
+            puntos += 10;
+            ventanaJuego.textFieldPuntos.setText(String.valueOf(puntos));
+        }
     }
 
     public void fuego() {

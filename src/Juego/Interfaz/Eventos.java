@@ -74,23 +74,23 @@ public class Eventos {
                     @Override
                     public void itemStateChanged(ItemEvent e) {
                         if(crearUsuario.jComboBoxTipoNave.getSelectedItem().equals("1")){
-                            ImageIcon imagen = new ImageIcon(getClass().getResource("../avion1.png"));
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion1.png"));
                             crearUsuario.buttonNave.setIcon(imagen);
                         }
                         if(crearUsuario.jComboBoxTipoNave.getSelectedItem().equals("2")){
-                            ImageIcon imagen = new ImageIcon(getClass().getResource("../avion2.png"));
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion2.png"));
                             crearUsuario.buttonNave.setIcon(imagen);
                         }
                         if(crearUsuario.jComboBoxTipoNave.getSelectedItem().equals("3")){
-                            ImageIcon imagen = new ImageIcon(getClass().getResource("../avion3.png"));
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion3.png"));
                             crearUsuario.buttonNave.setIcon(imagen);
                         }
                         if(crearUsuario.jComboBoxTipoNave.getSelectedItem().equals("4")){
-                            ImageIcon imagen = new ImageIcon(getClass().getResource("../avion4.png"));
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion4.png"));
                             crearUsuario.buttonNave.setIcon(imagen);
                         }
                         if(crearUsuario.jComboBoxTipoNave.getSelectedItem().equals("5")){
-                            ImageIcon imagen = new ImageIcon(getClass().getResource("../avion5.png"));
+                            ImageIcon imagen = new ImageIcon(getClass().getResource("../Imagenes/avion5.png"));
                             crearUsuario.buttonNave.setIcon(imagen);
                         }
                     }

@@ -10,6 +10,7 @@
  * **********************************************/
 package Juego;
 
+import javax.swing.*;
 import java.applet.AudioClip;
 
 public class Jugador{
@@ -24,6 +25,7 @@ public class Jugador{
     int numJugador;
 
 
+
     //Datos de la nave
     int vida;
     int puntos;
@@ -34,6 +36,7 @@ public class Jugador{
     boolean vivo;
     int numDisparo;
     AudioClip clipDisparo;
+    boolean pasoMitadVida;
 
 
 
@@ -54,6 +57,7 @@ public class Jugador{
 
         numDisparo = 0;
         puntos = 0;
+        pasoMitadVida = false;
     }
 
     public void iniciarPartida(int vida, int numDisparos, int velocidadNave, int width, int heigth, int numJugador,
@@ -86,7 +90,7 @@ public class Jugador{
             numDisparo = 0;
         }
         disparos[numDisparo].fuego();
-        if (sonido = true){
+        if (sonido){
             clipDisparo.stop();
             clipDisparo.play();
         }
@@ -94,7 +98,10 @@ public class Jugador{
 
     public void golpe(){
         vida -= danoPorGolpe;
-        System.out.println("El jugador " + numJugador + " tiene " + vida + " de vida");
+        /*if ((vida < 50) && (!pasoMitadVida)){
+            JOptionPane.showMessageDialog(null, "Paso de la mitad de la vida va a perder");
+            pasoMitadVida = true;
+        }*/
         if (vida <= 0)
         {
             vivo = false;
@@ -227,5 +234,13 @@ public class Jugador{
 
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
+    }
+
+    public boolean isPasoMitadVida() {
+        return pasoMitadVida;
+    }
+
+    public void setPasoMitadVida(boolean pasoMitadVida) {
+        this.pasoMitadVida = pasoMitadVida;
     }
 }

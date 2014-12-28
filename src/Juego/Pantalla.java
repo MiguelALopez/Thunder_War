@@ -10,19 +10,13 @@
  * **********************************************/
 package Juego;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+
 
 public class Pantalla extends JPanel implements Runnable{
     VentanaJuego ventanaJuego;
-//    AudioClip clipDisparo;
-
 
     //Imagenes
     Image imgAvion;
@@ -52,7 +46,7 @@ public class Pantalla extends JPanel implements Runnable{
                     imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion1.png")).getImage();
                 }break;
                 case 1:{
-                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion21.png")).getImage();
+                    imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion2.png")).getImage();
                 }break;
                 case 2:{
                     imgAvion = new ImageIcon(getClass().getResource("Imagenes/avion3.png")).getImage();
@@ -155,10 +149,8 @@ public class Pantalla extends JPanel implements Runnable{
                             if (i == 0){
                                 ventanaJuego.progressBarVida.setValue(ventanaJuego.jugadores[0].getVida());
                             }
-
-
                         }
-                        ventanaJuego.enemig[j].explotar();
+                        ventanaJuego.enemig[j].explotar(true);
                         if (ventanaJuego.checkJugadoresVivos()){
                             ventanaJuego.terminarPartida();
 
@@ -190,7 +182,7 @@ public class Pantalla extends JPanel implements Runnable{
 
                         //Comprobar posiciones enemigo y disparos
                         if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
-                            ventanaJuego.enemig[k].explotar();
+                            ventanaJuego.enemig[k].explotar(false);
                             ventanaJuego.jugadores[i].disparos[j].explotar();
                         }
                     }

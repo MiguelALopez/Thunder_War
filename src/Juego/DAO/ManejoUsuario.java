@@ -47,7 +47,7 @@ public class ManejoUsuario {
             PreparedStatement consulta = null;
             String insertSQL = "INSERT  INTO usuario" +
                     "(nick_name, password, nombre, apellido, tipo_nave, sonido, estado)" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?, ?, ?)";
             try {
                 consulta = connection.prepareStatement(insertSQL);
 
@@ -59,7 +59,7 @@ public class ManejoUsuario {
                 consulta.setBoolean(6, sonido);
                 consulta.setBoolean(7, true);
 
-                consulta.executeBatch();
+                consulta.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (NullPointerException e) {
