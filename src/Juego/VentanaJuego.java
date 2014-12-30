@@ -1,23 +1,18 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Autor: Manuel Alejandro Mena Salazar
- * Autor: Luis Carlos Montalvo
- * Código: 1326691 -1329107 - 1329088
+ * Correo: miguel.angel.lopez@correounivalle.edu.co
+ * Código: 1326691
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ConnectionConf.java
+ * Nombre del Archivo: VentanaJuego.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
 package Juego;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 public class VentanaJuego extends JFrame{
 
@@ -33,9 +28,9 @@ public class VentanaJuego extends JFrame{
     boolean iniciado;
 
     //Clases
-    disparo disp[];
-    enemigo enemig[];
-    lanzarEnemigos lanzarEnemigos;
+    Disparo disp[];
+    Enemigo enemig[];
+    LanzarEnemigos lanzarEnemigos;
     Jugador jugadores[];
     Pantalla pantalla;
 
@@ -111,9 +106,9 @@ public class VentanaJuego extends JFrame{
     }
 
     public void nivelUno(int tiempo){
-        // envia datos a lanzar enemigo para darle un nv de dif
+        // envia datos a lanzar Enemigo para darle un nv de dif
         jugadores[0].iniciarPartida(100, 20, 18, getWidth(), getHeight(), 0, 1, 10, clipDisparo);
-        enemig = new enemigo[7];
+        enemig = new Enemigo[7];
         iniciado = true;
 
         temp = new Temporizador(this,tiempo);
@@ -121,12 +116,12 @@ public class VentanaJuego extends JFrame{
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
-            enemig[i] = new enemigo(this, 4);
+            enemig[i] = new Enemigo(this, 4);
             enemig[i].start();
             enemig[i].preparar();
         }
 
-        lanzarEnemigos = new lanzarEnemigos(this, 1500);
+        lanzarEnemigos = new LanzarEnemigos(this, 1500);
         lanzarEnemigos.start();
 
         pantalla.hilo.start();
@@ -134,9 +129,9 @@ public class VentanaJuego extends JFrame{
     }
 
     public void nivelDos(int tiempo){
-        // envia datos a lanzar enemigo para darle un nv de dif
+        // envia datos a lanzar Enemigo para darle un nv de dif
         jugadores[0].iniciarPartida(100, 16, 16, getWidth(), getHeight(), 0, 2, 20, clipDisparo);
-        enemig = new enemigo[10];
+        enemig = new Enemigo[10];
         iniciado = true;
 
         temp = new Temporizador(this,tiempo);
@@ -144,12 +139,12 @@ public class VentanaJuego extends JFrame{
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
-            enemig[i] = new enemigo(this, 6);
+            enemig[i] = new Enemigo(this, 6);
             enemig[i].start();
             enemig[i].preparar();
         }
 
-        lanzarEnemigos = new lanzarEnemigos(this, 1000);
+        lanzarEnemigos = new LanzarEnemigos(this, 1000);
         lanzarEnemigos.start();
 
         pantalla.hilo.start();
@@ -157,9 +152,9 @@ public class VentanaJuego extends JFrame{
     }
 
     public void nivelTres(int tiempo){
-        // envia datos a lanzar enemigo para darle un nv de dif
+        // envia datos a lanzar Enemigo para darle un nv de dif
         jugadores[0].iniciarPartida(100, 12, 14, getWidth(), getHeight(), 0, 3, 30, clipDisparo);
-        enemig = new enemigo[20];
+        enemig = new Enemigo[20];
         iniciado = true;
 
         temp = new Temporizador(this,tiempo);
@@ -167,12 +162,12 @@ public class VentanaJuego extends JFrame{
 
         for (int i = 0; i < enemig.length; i++) {
             //Iniciar los enemigos
-            enemig[i] = new enemigo(this, 8);
+            enemig[i] = new Enemigo(this, 8);
             enemig[i].start();
             enemig[i].preparar();
         }
 
-        lanzarEnemigos = new lanzarEnemigos(this, 500);
+        lanzarEnemigos = new LanzarEnemigos(this, 500);
         lanzarEnemigos.start();
 
         pantalla.hilo.start();

@@ -1,16 +1,14 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Autor: Manuel Alejandro Mena Salazar
- * Autor: Luis Carlos Montalvo
- * Código: 1326691 -1329107 - 1329088
+ * Correo: miguel.angel.lopez@correounivalle.edu.co
+ * Código: 1326691
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ConnectionConf.java
+ * Nombre del Archivo: ManejoUsuario.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
 package Juego.DAO;
 
-import java.awt.*;
 import java.sql.*;
 
 public class ManejoUsuario {

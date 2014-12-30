@@ -1,16 +1,14 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Autor: Manuel Alejandro Mena Salazar
- * Autor: Luis Carlos Montalvo
- * Código: 1326691 -1329107 - 1329088
+ * Correo: miguel.angel.lopez@correounivalle.edu.co
+ * Código: 1326691
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ConnectionConf.java
+ * Nombre del Archivo: Jugador.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
 package Juego;
 
-import javax.swing.*;
 import java.applet.AudioClip;
 
 public class Jugador{
@@ -40,7 +38,7 @@ public class Jugador{
 
 
 
-    disparo disparos[];
+    Disparo disparos[];
 
     //Clases
     VentanaJuego ventanaJuego;
@@ -68,14 +66,14 @@ public class Jugador{
         this.danoPorGolpe = danoPorGolpe;
         this.clipDisparo = clipDisparo;
 
-        disparos = new disparo[numDisparos];
+        disparos = new Disparo[numDisparos];
         vivo = true;
         posicionY = width-90;
         posicionX = (heigth - 90) / 2;
 
         for (int i = 0; i < disparos.length; i++) {
             //Iniciamos los disparos
-            disparos[i] = new disparo(ventanaJuego, numJugador, velocidadDisparo); //Disparos del avion
+            disparos[i] = new Disparo(ventanaJuego, numJugador, velocidadDisparo); //Disparos del avion
 
             disparos[i].start();
             //Preparar los disparos para utilizarlos al pulsar espacio
@@ -180,11 +178,11 @@ public class Jugador{
         this.velocidadNave = velocidadNave;
     }
 
-    public disparo[] getDisparos() {
+    public Disparo[] getDisparos() {
         return disparos;
     }
 
-    public void setDisparos(disparo[] disparos) {
+    public void setDisparos(Disparo[] disparos) {
         this.disparos = disparos;
     }
 

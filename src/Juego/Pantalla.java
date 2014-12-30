@@ -1,10 +1,9 @@
 /***********************************************
  * Autor: Miguel Angel Lopez Fernandez
- * Autor: Manuel Alejandro Mena Salazar
- * Autor: Luis Carlos Montalvo
- * Código: 1326691 -1329107 - 1329088
+ * Correo: miguel.angel.lopez@correounivalle.edu.co
+ * Código: 1326691
  * Fecha: 14-dic-2014
- * Nombre del Archivo: ConnectionConf.java
+ * Nombre del Archivo: Pantalla.java
  * Plan: Ingeniería de Sistemas - 3743
  * Institución Educativa: Universidad del Valle
  * **********************************************/
@@ -39,7 +38,7 @@ public class Pantalla extends JPanel implements Runnable{
     public void cargarImagenes(){
         try{
             imgDisparo = new ImageIcon(getClass().getResource("Imagenes/disparo.jpg")).getImage();
-            imgEnemigo = new ImageIcon(getClass().getResource("Imagenes/enemigo.png")).getImage();
+            imgEnemigo = new ImageIcon(getClass().getResource("Imagenes/Enemigo.png")).getImage();
             imgExplosion = new ImageIcon(getClass().getResource("Imagenes/explosion.png")).getImage();
             switch (ventanaJuego.jugadores[0].tipoImgNave){
                 case 0:{
@@ -103,11 +102,14 @@ public class Pantalla extends JPanel implements Runnable{
         for (int i = 0; i < ventanaJuego.jugadores.length; i++){
             if (ventanaJuego.jugadores[i] != null && ventanaJuego.jugadores[i].vivo){
                 for (int j = 0; j < ventanaJuego.jugadores[i].disparos.length; j++){
+                    if (ventanaJuego.jugadores[i].disparos[j].disparado){
+                        int x = ventanaJuego.jugadores[i].disparos[j].retornarX();
+                        int y = ventanaJuego.jugadores[i].disparos[j].retornarY();
+                        g.drawImage(imgDisparo, x + 40, y, 3, 9, null);
+                        g.drawImage(imgDisparo, x + 10, y, 3, 9, null);
+                    }
 
-                    int x = ventanaJuego.jugadores[i].disparos[j].retornarX();
-                    int y = ventanaJuego.jugadores[i].disparos[j].retornarY();
-                    g.drawImage(imgDisparo, x + 40, y, 3, 9, null);
-                    g.drawImage(imgDisparo, x + 10, y, 3, 9, null);
+
                 }
             }
         }
@@ -124,7 +126,7 @@ public class Pantalla extends JPanel implements Runnable{
         }
     }
 
-    //Metodo que verifica si el avion de un jugador colisiona contra uno enemigo
+    //Metodo que verifica si el avion de un jugador colisiona contra uno Enemigo
     void colisionAvionEnemigo(Graphics g) {
         for (int i = 0; i < ventanaJuego.jugadores.length; i++){
             if (ventanaJuego.jugadores[i]!= null && ventanaJuego.jugadores[i].vivo){
@@ -138,11 +140,11 @@ public class Pantalla extends JPanel implements Runnable{
                     x1 = ventanaJuego.jugadores[i].getPosicionX();
                     y1 = ventanaJuego.jugadores[i].getPosicionY();
 
-                    //Posicion del enemigo
+                    //Posicion del Enemigo
                     x2 = ventanaJuego.enemig[j].retornarX();
                     y2 = ventanaJuego.enemig[j].retornarY();
 
-                    //Comprobar posiciones enemigo y jugadores
+                    //Comprobar posiciones Enemigo y jugadores
                     if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
                         if (ventanaJuego.enemig[j].muerto() == false) {
                             ventanaJuego.jugadores[i].golpe();
@@ -165,25 +167,28 @@ public class Pantalla extends JPanel implements Runnable{
         for (int i= 0; i < ventanaJuego.jugadores.length; i++){
             if (ventanaJuego.jugadores[i] != null){
                 for (int j = 0; j < ventanaJuego.jugadores[i].disparos.length; j++){
-                    for (int k = 0; k < ventanaJuego.enemig.length; k++){
-                        int w1, h1, w2, h2, x1, y1, x2, y2;
-                        w1 = 50;
-                        h1 = 50;
-                        w2 = 43;
-                        h2 = 9;
+                    for (int k = 0; k < ventanaJuego.enemig.length; k++) {
+                        if (ventanaJuego.jugadores[i].disparos[j].disparado) {
+                            int w1, h1, w2, h2, x1, y1, x2, y2;
+                            w1 = 50;
+                            h1 = 50;
+                            w2 = 43;
+                            h2 = 9;
 
-                        //Posicion del disparo
-                        x1 = ventanaJuego.jugadores[i].disparos[j].retornarX();
-                        y1 = ventanaJuego.jugadores[i].disparos[j].retornarY();
+                            //Posicion del Disparo
+                            x1 = ventanaJuego.jugadores[i].disparos[j].retornarX();
+                            y1 = ventanaJuego.jugadores[i].disparos[j].retornarY();
 
-                        //Posicion del enemigo
-                        x2 = ventanaJuego.enemig[k].retornarX();
-                        y2 = ventanaJuego.enemig[k].retornarY();
+                            //Posicion del Enemigo
+                            x2 = ventanaJuego.enemig[k].retornarX();
+                            y2 = ventanaJuego.enemig[k].retornarY();
 
-                        //Comprobar posiciones enemigo y disparos
-                        if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
-                            ventanaJuego.enemig[k].explotar(false);
-                            ventanaJuego.jugadores[i].disparos[j].explotar();
+                            //Comprobar posiciones Enemigo y disparos
+                            if (((x1 + w1) > x2) && ((y1 + h1) > y2) && ((x2 + w2) > x1) && ((y2 + h2) > y1)) {
+                                ventanaJuego.enemig[k].explotar(false);
+                                ventanaJuego.jugadores[i].disparos[j].explotar();
+                            }
+
                         }
                     }
                 }
